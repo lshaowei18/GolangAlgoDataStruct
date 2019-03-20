@@ -56,3 +56,28 @@ func TestSwap(t *testing.T) {
 		}
 	}
 }
+
+var lowerPriorityTests = []struct {
+	i        int
+	j        int
+	values   []Node
+	expected bool
+}{
+	{
+		1,
+		3,
+		[]Node{{0, ""}, {3, ""}, {2, ""}, {1, ""}, {4, ""}},
+		true,
+	},
+}
+
+func TestLowerPriority(t *testing.T) {
+	for _, tt := range lowerPriorityTests {
+		pq := PriorityQueue{tt.values}
+		actual := pq.lowerPriority(tt.i, tt.j)
+
+		if actual != tt.expected {
+			t.Errorf("Want %v, got %v", tt.expected, actual)
+		}
+	}
+}
