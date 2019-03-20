@@ -1,2 +1,3 @@
-/binaryheap
-/priorityqueue
+binaryheap
+priorityqueue/main.go
+priorityqueue/main_test.go
