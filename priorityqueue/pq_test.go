@@ -81,3 +81,36 @@ func TestLowerPriority(t *testing.T) {
 		}
 	}
 }
+
+var dequeueTests = []struct {
+	values       []Node
+	expected     []Node
+	expectedNode Node
+}{
+	{
+		[]Node{{12, ""}, {27, ""}, {18, ""}, {41, ""}, {33, ""}, {39, ""}},
+		[]Node{{18, ""}, {27, ""}, {39, ""}, {41, ""}, {33, ""}},
+		Node{12, ""},
+	},
+	{
+		[]Node{},
+		[]Node{},
+		Node{},
+	},
+}
+
+func TestDequeue(t *testing.T) {
+	for _, tt := range dequeueTests {
+		actual := PriorityQueue{tt.values}
+
+		node := actual.Dequeue()
+
+		if node != tt.expectedNode {
+			t.Errorf("Want %v, got %v", tt.expectedNode, node)
+		}
+
+		if !reflect.DeepEqual(actual.nodes, tt.expected) {
+			t.Errorf("Want %v, got %v", tt.expected, actual.nodes)
+		}
+	}
+}
