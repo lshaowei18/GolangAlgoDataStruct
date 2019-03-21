@@ -14,9 +14,9 @@ func (pq *PriorityQueue) Enqueue(priority int, value string) {
 	pq.nodes = append(pq.nodes, node)
 
 	index := len(pq.nodes) - 1
-	parentIndex := (index - 1) / 2
 
 	for {
+		parentIndex := (index - 1) / 2
 		if index == parentIndex || pq.lowerPriority(index, parentIndex) {
 			break
 		}
@@ -25,7 +25,6 @@ func (pq *PriorityQueue) Enqueue(priority int, value string) {
 
 		//Increment
 		index = parentIndex
-		parentIndex = (index - 1) / 2
 	}
 }
 
