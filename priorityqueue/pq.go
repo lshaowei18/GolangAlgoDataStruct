@@ -16,7 +16,10 @@ func (pq *PriorityQueue) Enqueue(priority int, value string) {
 	index := len(pq.nodes) - 1
 	parentIndex := (index - 1) / 2
 
-	for pq.nodes[index].priority < pq.nodes[parentIndex].priority {
+	for {
+		if index == parentIndex || pq.lowerPriority(index, parentIndex) {
+			break
+		}
 		//Swap Values
 		pq.swap(index, parentIndex)
 
@@ -28,4 +31,9 @@ func (pq *PriorityQueue) Enqueue(priority int, value string) {
 
 func (pq *PriorityQueue) swap(i, j int) {
 	pq.nodes[i], pq.nodes[j] = pq.nodes[j], pq.nodes[i]
+}
+
+//Higher number has lower priority
+func (pq *PriorityQueue) lowerPriority(i, j int) bool {
+	return pq.nodes[i].priority > pq.nodes[j].priority
 }
