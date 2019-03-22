@@ -7,10 +7,14 @@ import (
 
 func TestIntToListNode(t *testing.T) {
 	want := 4
-	ln := IntToListNode(want)
+	actual := IntToListNode(want)
 
 	//Ln should be a ListNode pointer
-	if reflect.ValueOf(ln).Kind() != reflect.Ptr {
-		t.Errorf("Should return a pointer, got %v instead", reflect.ValueOf(ln).Kind())
+	if reflect.ValueOf(actual).Kind() != reflect.Ptr {
+		t.Errorf("Want a pointer, got %v instead", reflect.ValueOf(actual).Kind())
+	}
+
+	if actual.Val != want {
+		t.Errorf("ListNode.Val should be %v, but got %v instead.", want, actual.Val)
 	}
 }
