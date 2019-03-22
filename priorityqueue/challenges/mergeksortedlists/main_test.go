@@ -55,3 +55,18 @@ func TestIntSliceToSingly(t *testing.T) {
 		}
 	}
 }
+
+func TestSinglyToIntList(t *testing.T) {
+	tests := []struct {
+		wanted []int
+	}{
+		{[]int{1, 4, 5}},
+	}
+
+	for _, tt := range tests {
+		actual := SinglyToIntList(tt.wanted)
+		if actual != tt.wanted {
+			t.Errorf("Wanted %v, got %v", tt.wanted, actual)
+		}
+	}
+}
