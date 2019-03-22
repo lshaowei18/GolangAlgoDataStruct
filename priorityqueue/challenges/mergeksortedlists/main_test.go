@@ -20,29 +20,38 @@ func TestIntToListNode(t *testing.T) {
 }
 
 func TestIntSliceToSingly(t *testing.T) {
-	values := []int{1, 4, 5}
-	actual := IntSliceToSingly(values)
-
-	//actual should be a ListNode pointer
-	if reflect.ValueOf(actual).Kind() != reflect.Ptr {
-		t.Errorf("Want a pointer, got %v instead", reflect.ValueOf(actual).Kind())
+	sliceToSinglyTests := []struct {
+		values []int
+	}{
+		{[]int{1, 4, 5}},
+		{[]int{}},
 	}
 
-	//actual.Next should not be nil if len > 1
-	if len(values) > 1 && actual.Next == nil {
-		t.Errorf("actual.Next should not be nil when length of values is more than 1.")
-	}
+	for _, tt := range sliceToSinglyTests {
 
-	node := actual
-	for i := 0; i < len(values); i++ {
-		if node.Val != values[i] {
-			t.Errorf("Expected %v, got %v ", values[i], node.Val)
+		actual := IntSliceToSingly(tt.values)
+
+		//actual should be a ListNode pointer
+		if reflect.ValueOf(actual).Kind() != reflect.Ptr {
+			t.Errorf("Want a pointer, got %v instead", reflect.ValueOf(actual).Kind())
 		}
 
-		if i == len(values)-1 && node.Next != nil {
-			t.Errorf("Last element.Next should be nil, index:%v, len:%v", i, len(values))
+		//actual.Next should not be nil if len > 1
+		if len(tt.values) > 1 && actual.Next == nil {
+			t.Errorf("actual.Next should not be nil when length of tt.values is more than 1.")
 		}
 
-		node = node.Next
+		node := actual
+		for i := 0; i < len(tt.values); i++ {
+			if node.Val != tt.values[i] {
+				t.Errorf("Expected %v, got %v ", tt.values[i], node.Val)
+			}
+
+			if i == len(tt.values)-1 && node.Next != nil {
+				t.Errorf("Last element.Next should be nil, index:%v, len:%v", i, len(tt.values))
+			}
+
+			node = node.Next
+		}
 	}
 }
