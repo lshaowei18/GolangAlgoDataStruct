@@ -73,3 +73,34 @@ func TestSinglyToIntList(t *testing.T) {
 		}
 	}
 }
+
+func TestEnqueue(t *testing.T) {
+	tests := []struct {
+		values   []int
+		expected []int
+	}{
+		{
+			[]int{1, 0, 2},
+			[]int{0, 1, 2},
+		},
+		{
+			[]int{41, 39, 33, 18, 27, 12},
+			[]int{12, 27, 18, 41, 33, 39},
+		},
+	}
+	for _, tt := range tests {
+		pq := PriorityQueue{}
+
+		//Enqueue nodes in test cases
+		for _, n := range tt.values {
+			node := &ListNode{n, nil}
+			pq.Enqueue(node)
+		}
+
+		actual := NodeSliceToIntSlice(pq.nodes)
+
+		if !reflect.DeepEqual(actual, tt.expected) {
+			t.Errorf("Want %v, got %v.", tt.expected, actual)
+		}
+	}
+}
