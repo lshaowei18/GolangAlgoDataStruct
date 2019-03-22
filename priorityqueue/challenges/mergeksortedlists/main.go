@@ -8,3 +8,7 @@ type ListNode struct {
 type PriorityQueue struct {
 	nodes []*ListNode
 }
+
+func IntToListNode(n int) *ListNode {
+	return &ListNode{4, nil}
+}
