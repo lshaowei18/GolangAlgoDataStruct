@@ -61,6 +61,7 @@ func TestSinglyToIntList(t *testing.T) {
 		wanted []int
 	}{
 		{[]int{1, 4, 5}},
+		{[]int{}},
 	}
 
 	for _, tt := range tests {
