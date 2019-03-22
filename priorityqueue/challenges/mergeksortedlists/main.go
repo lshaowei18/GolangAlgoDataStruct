@@ -14,6 +14,9 @@ func IntToListNode(n int) *ListNode {
 }
 
 func IntSliceToSingly(s []int) *ListNode {
+	if len(s) == 0 {
+		return nil
+	}
 	head := &ListNode{s[0], nil}
 
 	node := head
