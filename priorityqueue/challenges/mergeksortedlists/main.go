@@ -27,3 +27,16 @@ func IntSliceToSingly(s []int) *ListNode {
 	}
 	return head
 }
+
+func SinglyToIntList(head *ListNode) []int {
+	node := head
+	s := []int{}
+	for {
+		if node == nil {
+			break
+		}
+		s = append(s, node.Val)
+		node = node.Next
+	}
+	return s
+}

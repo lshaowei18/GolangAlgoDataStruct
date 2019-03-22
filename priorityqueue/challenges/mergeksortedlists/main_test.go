@@ -66,6 +66,7 @@ func TestSinglyToIntList(t *testing.T) {
 	for _, tt := range tests {
 		head := IntSliceToSingly(tt.wanted)
 		actual := SinglyToIntList(head)
+
 		if !reflect.DeepEqual(actual, tt.wanted) {
 			t.Errorf("Wanted %v, got %v", tt.wanted, actual)
 		}
