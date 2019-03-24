@@ -116,7 +116,7 @@ func TestNodesToInts(t *testing.T) {
 				&ListNode{33, nil}, &ListNode{18, nil},
 				&ListNode{27, nil}, &ListNode{12, nil},
 			},
-			[]int{12, 27, 18, 41, 33, 39},
+			[]int{41, 39, 33, 18, 27, 12},
 		},
 	}
 
