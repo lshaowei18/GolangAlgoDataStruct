@@ -76,15 +76,21 @@ func TestSinglyToIntList(t *testing.T) {
 
 func TestEnqueue(t *testing.T) {
 	tests := []struct {
-		values   []int
+		values   []*ListNode
 		expected []int
 	}{
 		{
-			[]int{1, 0, 2},
+			[]*ListNode{
+				&ListNode{1, nil}, &ListNode{0, nil}, &ListNode{2, nil},
+			},
 			[]int{0, 1, 2},
 		},
 		{
-			[]int{41, 39, 33, 18, 27, 12},
+			[]*ListNode{
+				&ListNode{41, nil}, &ListNode{39, nil},
+				&ListNode{33, nil}, &ListNode{18, nil},
+				&ListNode{27, nil}, &ListNode{12, nil},
+			},
 			[]int{12, 27, 18, 41, 33, 39},
 		},
 	}
@@ -92,8 +98,7 @@ func TestEnqueue(t *testing.T) {
 		pq := PriorityQueue{}
 
 		//Enqueue nodes in test cases
-		for _, n := range tt.values {
-			node := &ListNode{n, nil}
+		for _, node := range tt.values {
 			pq.Enqueue(node)
 		}
 
