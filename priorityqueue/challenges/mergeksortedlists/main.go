@@ -40,3 +40,11 @@ func SinglyToIntList(head *ListNode) []int {
 	}
 	return s
 }
+
+func NodesToInts(nodes []*ListNode) []int {
+	var ints []int
+	for _, node := range nodes {
+		ints = append(ints, node.Val)
+	}
+	return ints
+}
