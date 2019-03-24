@@ -122,9 +122,11 @@ func TestDequeue(t *testing.T) {
 	}
 
 	for _, tt := range tests {
+		var nodes []*ListNode
 
 		for _, s := range tt.values {
-
+			node := IntSliceToSingly(s)
+			nodes = append(nodes, node)
 		}
 	}
 }
