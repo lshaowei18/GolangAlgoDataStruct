@@ -97,10 +97,34 @@ func TestEnqueue(t *testing.T) {
 			pq.Enqueue(node)
 		}
 
-		actual := NodeSliceToIntSlice(pq.nodes)
+		actual := NodesToInts(pq.nodes)
 
 		if !reflect.DeepEqual(actual, tt.expected) {
 			t.Errorf("Want %v, got %v.", tt.expected, actual)
+		}
+	}
+}
+
+func TestNodesToInts(t *testing.T) {
+	tests := []struct {
+		values   []*ListNode
+		expected []int
+	}{
+		{
+			[]*ListNode{
+				&ListNode{41, nil}, &ListNode{39, nil},
+				&ListNode{33, nil}, &ListNode{18, nil},
+				&ListNode{27, nil}, &ListNode{12, nil},
+			},
+			[]int{12, 27, 18, 41, 33, 39},
+		},
+	}
+
+	for _, tt := range tests {
+		actual := NodesToInts(tt.values)
+
+		if !reflect.DeepEqual(actual, tt.expected) {
+			t.Errorf("Wanted %v, got %v", tt.expected, actual)
 		}
 	}
 }
