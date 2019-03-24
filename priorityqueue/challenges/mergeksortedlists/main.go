@@ -76,3 +76,52 @@ func (pq *PriorityQueue) EnqueueSingly(head *ListNode) {
 		node = node.Next
 	}
 }
+
+func (pq *PriorityQueue) Dequeue() *ListNode {
+	if len(pq.nodes) == 0 {
+		return nil
+	}
+	dequeued := pq.nodes[0]
+
+	pq.nodes[0] = pq.nodes[len(pq.nodes)-1] //Replace last node with first node
+	pq.nodes = pq.nodes[:len(pq.nodes)-1]   //Remove last node
+
+	i := 0 //  of previously last node
+
+	for {
+		n := len(pq.nodes)
+
+		left := i*2 + 1
+
+		//Once left child is out of range, both children will be
+		if left >= n {
+			break
+		}
+
+		swap := left
+
+		// right is not out of range and less than left
+		if right := left + 1; right < n && pq.less(right, left) {
+			swap = right
+		}
+
+		//if i is higher than swap child, break
+		if pq.less(i, swap) {
+			break
+		}
+
+		pq.swap(i, swap)
+
+		i = swap
+	}
+	return dequeued
+}
+
+//Higher number has lower priority
+func (pq *PriorityQueue) less(i, j int) bool {
+	return pq.nodes[i].Val < pq.nodes[j].Val
+}
+
+func (pq *PriorityQueue) swap(i, j int) {
+	pq.nodes[i], pq.nodes[j] = pq.nodes[j], pq.nodes[i]
+}
