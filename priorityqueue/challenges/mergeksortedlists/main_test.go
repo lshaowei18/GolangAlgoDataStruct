@@ -110,6 +110,25 @@ func TestEnqueue(t *testing.T) {
 	}
 }
 
+func TestDequeue(t *testing.T) {
+	tests := []struct {
+		values   [][]int
+		expected []int
+	}{
+		{
+			[][]int{{1, 4, 5}, {1, 3, 4}, {2, 6}},
+			[]int{1, 1, 2, 3, 4, 4, 5, 6},
+		},
+	}
+
+	for _, tt := range tests {
+
+		for _, s := range tt.values {
+
+		}
+	}
+}
+
 func TestNodesToInts(t *testing.T) {
 	tests := []struct {
 		values   []*ListNode
