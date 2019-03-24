@@ -152,11 +152,27 @@ func TestDequeue(t *testing.T) {
 	}
 
 	for _, tt := range tests {
-		var nodes []*ListNode
-
+		pq := PriorityQueue{}
 		for _, s := range tt.values {
 			node := IntSliceToSingly(s)
+
+			pq.EnqueueSingly(node)
+		}
+
+		var nodes []*ListNode
+		for {
+			if len(pq.nodes) == 0 {
+				break
+			}
+
+			node := pq.Dequeue()
 			nodes = append(nodes, node)
+		}
+
+		actual := NodesToInts(nodes)
+
+		if !reflect.DeepEqual(actual, tt.expected) {
+			t.Errorf("Wanted %v, got %v", tt.expected, actual)
 		}
 	}
 }
