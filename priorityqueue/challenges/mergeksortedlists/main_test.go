@@ -160,12 +160,13 @@ func TestDequeue(t *testing.T) {
 		}
 
 		var nodes []*ListNode
+
+		//Dequeue and add to the nodes
 		for {
-			if len(pq.nodes) == 0 {
+			node := pq.Dequeue()
+			if node == nil {
 				break
 			}
-
-			node := pq.Dequeue()
 			nodes = append(nodes, node)
 		}
 
