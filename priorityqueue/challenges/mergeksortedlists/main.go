@@ -65,3 +65,14 @@ func (pq *PriorityQueue) Enqueue(node *ListNode) {
 		i = p
 	}
 }
+
+func (pq *PriorityQueue) EnqueueSingly(head *ListNode) {
+	node := head
+	for {
+		if node == nil {
+			break
+		}
+		pq.Enqueue(node)
+		node = node.Next
+	}
+}
