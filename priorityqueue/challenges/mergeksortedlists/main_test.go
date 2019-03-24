@@ -110,6 +110,36 @@ func TestEnqueue(t *testing.T) {
 	}
 }
 
+func TestEnqueueSingly(t *testing.T) {
+	tests := []struct {
+		values   [][]int
+		expected []int
+	}{
+		{
+			[][]int{{1, 4, 5}, {1, 3, 4}, {2, 6}},
+			[]int{1, 1, 4, 2, 3, 5, 4, 4, 6},
+		},
+		{
+			[][]int{{41, 39}, {33, 18}, {27, 12}},
+			[]int{12, 27, 18, 41, 33, 39},
+		},
+	}
+	for _, tt := range tests {
+		pq := PriorityQueue{}
+
+		for _, s := range tt.values {
+			head := IntSliceToSingly(s)
+			pq.EnqueueSingly(head)
+		}
+
+		actual := NodesToInts(pq.nodes)
+
+		if !reflect.DeepEqual(actual, tt.expected) {
+			t.Errorf("Wanted %v, got %v", tt.expected, actual)
+		}
+	}
+}
+
 func TestDequeue(t *testing.T) {
 	tests := []struct {
 		values   [][]int
