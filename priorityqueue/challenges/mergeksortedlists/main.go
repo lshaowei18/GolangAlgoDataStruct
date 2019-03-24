@@ -48,3 +48,20 @@ func NodesToInts(nodes []*ListNode) []int {
 	}
 	return ints
 }
+
+func (pq *PriorityQueue) Enqueue(node *ListNode) {
+	pq.nodes = append(pq.nodes, node)
+	i := len(pq.nodes) - 1 // index of child
+
+	for {
+		p := (i - 1) / 2 //index of parent
+
+		if pq.nodes[i].Val >= pq.nodes[p].Val {
+			break
+		}
+		//Swap
+		pq.nodes[i], pq.nodes[p] = pq.nodes[p], pq.nodes[i]
+
+		i = p
+	}
+}
