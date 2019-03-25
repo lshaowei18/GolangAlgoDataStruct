@@ -27,20 +27,64 @@ func (this *MedianFinder) AddNum(num int) {
 	}
 }
 
+func (this *MedianFinder) Dequeue() int {
+	dequeued := this.elements[0]
+
+	this.elements[0] = this.elements[len(this.elements)-1]
+	this.elements = this.elements[:len(this.elements)-1]
+
+	i := 0
+
+	for {
+		n := len(this.elements)
+
+		left := i*2 + 1
+
+		if left >= n {
+			break
+		}
+
+		swap := left
+
+		if right := left + 1; right < n && this.less(right, left) {
+			swap = right
+		}
+
+		if this.less(i, swap) {
+			break
+		}
+
+		this.swap(i, swap)
+
+		i = swap
+	}
+	return dequeued
+}
+
 func (this *MedianFinder) FindMedian() float64 {
 	n := len(this.elements)
+	mid := (n - 1) / 2
 
-	i := (n - 1) / 2
+	median := 0
 
-	if n%2 != 0 {
-		return float64(this.elements[i])
+	for i := 0; i <= mid; i++ {
+		median = this.Dequeue()
 	}
 
-	sum := float64(this.elements[i] + this.elements[i+1])
+	if n%2 != 0 {
+		return float64(median)
+	}
+
+	median2 := this.Dequeue()
+	sum := float64(median + median2)
 
 	return sum / 2
 }
 
 func (mf *MedianFinder) swap(i, j int) {
 	mf.elements[i], mf.elements[j] = mf.elements[j], mf.elements[i]
+}
+
+func (mf *MedianFinder) less(i, j int) bool {
+	return mf.elements[i] < mf.elements[j]
 }
