@@ -56,12 +56,14 @@ func TestFindMedian(t *testing.T) {
 
 	for _, tt := range tests {
 		mf := Constructor()
-		mf.elements = tt.values
+		for _, n := range tt.values {
+			mf.AddNum(n)
+		}
 
 		got := mf.FindMedian()
 
 		if got != tt.want {
-			t.Errorf("Got %v, want %v", got, tt.want)
+			t.Errorf("Got %v, want %v, values %v", got, tt.want, tt.values)
 		}
 	}
 }
