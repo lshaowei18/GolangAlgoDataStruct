@@ -16,6 +16,11 @@ func TestTopKFrequent(t *testing.T) {
 			2,
 			[]int{1, 2},
 		},
+		{
+			[]int{4, 1, -1, 2, -1, 2, 3},
+			2,
+			[]int{-1, 2},
+		},
 	}
 
 	for _, tt := range tests {
