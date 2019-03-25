@@ -8,9 +8,15 @@ import (
 func TestAddNum(t *testing.T) {
 	tests := []struct {
 		values []int
+		want   []int
 	}{
 		{
+			[]int{3, 2, 4},
 			[]int{2, 3, 4},
+		},
+		{
+			[]int{6, 10, 2, 6, 5, 0, 6, 3, 1, 0, 0},
+			[]int{0, 0, 2, 3, 0, 6, 6, 10, 5, 6, 1},
 		},
 	}
 
@@ -23,8 +29,8 @@ func TestAddNum(t *testing.T) {
 
 		got := mf.elements
 
-		if !reflect.DeepEqual(got, tt.values) {
-			t.Errorf("Want %v, got %v", tt.values, got)
+		if !reflect.DeepEqual(got, tt.want) {
+			t.Errorf("Want %v, got %v", tt.want, got)
 		}
 	}
 }
@@ -41,6 +47,10 @@ func TestFindMedian(t *testing.T) {
 		{
 			[]int{2, 3},
 			2.5,
+		},
+		{
+			[]int{6, 10, 2, 6, 5, 0, 6, 3, 1, 0, 0},
+			3,
 		},
 	}
 
