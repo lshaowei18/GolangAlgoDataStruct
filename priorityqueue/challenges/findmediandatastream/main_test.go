@@ -1,7 +1,6 @@
 package findmedian
 
 import (
-	"fmt"
 	"reflect"
 	"testing"
 )
@@ -25,7 +24,7 @@ func TestAddNum(t *testing.T) {
 		got := mf.elements
 
 		if !reflect.DeepEqual(got, tt.values) {
-			fmt.Errorf("Want %v, got %v", tt.values, got)
+			t.Errorf("Want %v, got %v", tt.values, got)
 		}
 	}
 }
