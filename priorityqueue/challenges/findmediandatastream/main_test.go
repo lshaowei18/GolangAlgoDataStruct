@@ -52,12 +52,25 @@ func TestFindMedian(t *testing.T) {
 			[]int{6, 10, 2, 6, 5, 0, 6, 3, 1, 0, 0},
 			3,
 		},
+		{
+			[]int{1, 2, 3},
+			2,
+		},
+		{
+			[]int{-1, -2, -3},
+			-2,
+		},
+		{
+			[]int{-1, -2, -3, -4, -5},
+			-3,
+		},
 	}
 
 	for _, tt := range tests {
 		mf := Constructor()
 		for _, n := range tt.values {
 			mf.AddNum(n)
+			mf.FindMedian()
 		}
 
 		got := mf.FindMedian()
