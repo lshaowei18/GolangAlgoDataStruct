@@ -8,9 +8,10 @@ func TestHash(t *testing.T) {
 		length int
 		want   int
 	}{
-		{"pink", 10, 0},
-		{"orangered", 10, 7},
-		{"cyan", 10, 3},
+		{"hello", 13, 7},
+		{"goodbye", 13, 9},
+		{"cyan", 13, 5},
+		{"hi", 13, 10},
 	}
 
 	for _, tt := range tests {
