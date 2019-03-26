@@ -18,3 +18,16 @@ func (ht HashTable) Hash(key string) int {
 func (ht *HashTable) Set(key int, val string) {
 	ht.keyMap[key] = append(ht.keyMap[key], val)
 }
+
+func (ht HashTable) Get(key string) string {
+	hash := ht.Hash(key)
+
+	val := ""
+
+	for _, str := range ht.keyMap[hash] {
+		if key == str {
+			val = str
+		}
+	}
+	return val
+}
