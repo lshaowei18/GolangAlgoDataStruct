@@ -1,5 +1,9 @@
 package hashtable
 
+type HashTable struct {
+	keyMap [53]int
+}
+
 func Hash(key string, length int) int {
 	PRIME := 31
 	total := 0
