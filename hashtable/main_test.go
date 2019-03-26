@@ -43,4 +43,23 @@ func TestSet(t *testing.T) {
 			t.Errorf("Got %v, want %v", got, values)
 		}
 	})
+
+	t.Run("Same keys", func(t *testing.T) {
+		values := []string{"goodbye", "cyan"}
+
+		ht := HashTable{}
+
+		var k int
+
+		for _, v := range values {
+			k = ht.Hash(v)
+			ht.Set(k, v)
+		}
+
+		got := ht.keyMap[k]
+
+		if !reflect.DeepEqual(got, values) {
+			t.Errorf("Got %v, want %v", got, values)
+		}
+	})
 }
