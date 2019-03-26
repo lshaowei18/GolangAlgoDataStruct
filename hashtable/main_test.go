@@ -27,25 +27,20 @@ func TestHash(t *testing.T) {
 }
 
 func TestSet(t *testing.T) {
-	tests := []struct {
-		values []string
-	}{
-		{
-			[]string{"hello", "goodbye", "hi"},
-		},
-	}
+	t.Run("Different keys", func(t *testing.T) {
+		values := []string{"hello", "goodbye", "hi"}
 
-	for _, tt := range tests {
 		ht := HashTable{}
+
 		got := []string{}
-		for _, v := range tt.values {
+		for _, v := range values {
 			k := ht.Hash(v)
 			ht.Set(k, v)
 			got = append(got, ht.keyMap[k][0])
 		}
 
-		if !reflect.DeepEqual(got, tt.values) {
-			t.Errorf("Got %v, want %v", got, tt.values)
+		if !reflect.DeepEqual(got, values) {
+			t.Errorf("Got %v, want %v", got, values)
 		}
-	}
+	})
 }
