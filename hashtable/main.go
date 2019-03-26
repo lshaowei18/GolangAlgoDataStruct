@@ -14,3 +14,7 @@ func (ht HashTable) Hash(key string) int {
 
 	return total
 }
+
+func (ht *HashTable) Set(key int, val string) {
+	ht.keyMap[key] = append(ht.keyMap[key], val)
+}
