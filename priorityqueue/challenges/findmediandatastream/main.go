@@ -1,7 +1,8 @@
 package findmedian
 
 type MedianFinder struct {
-	elements []int
+	small []int
+	large []int
 }
 
 /** initialize your data structure here. */
@@ -63,6 +64,8 @@ func (this *MedianFinder) Dequeue() int {
 
 func (this *MedianFinder) FindMedian() float64 {
 	n := len(this.elements)
+	arr := make([]int, n)
+	copy(arr, this.elements)
 	mid := (n - 1) / 2
 
 	median := 0
@@ -72,12 +75,13 @@ func (this *MedianFinder) FindMedian() float64 {
 	}
 
 	if n%2 != 0 {
+		this.elements = arr
 		return float64(median)
 	}
 
 	median2 := this.Dequeue()
 	sum := float64(median + median2)
-
+	this.elements = arr
 	return sum / 2
 }
 
@@ -85,6 +89,6 @@ func (mf *MedianFinder) swap(i, j int) {
 	mf.elements[i], mf.elements[j] = mf.elements[j], mf.elements[i]
 }
 
-func (mf *MedianFinder) less(i, j int) bool {
+func (mf MedianFinder) less(i, j int) bool {
 	return mf.elements[i] < mf.elements[j]
 }
