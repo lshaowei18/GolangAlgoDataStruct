@@ -1,7 +1,5 @@
 package bst
 
-import "reflect"
-
 type Node struct {
 	Val   int
 	Left  *Node
@@ -9,13 +7,37 @@ type Node struct {
 }
 
 type BinarySearchTree struct {
-	root Node
+	root *Node
 }
 
 func (bst *BinarySearchTree) Insert(val int) {
 	new := Node{val, nil, nil}
 
-	if reflect.DeepEqual(bst.root, Node{}) {
-		bst.root = new
+	if bst.root == nil {
+		bst.root = &new
+		return
+	}
+
+	var node *Node
+
+	node = bst.root
+
+	for {
+		if val < node.Val {
+			if node.Left != nil {
+				node = node.Left
+				continue
+			}
+			node.Left = &new
+			break
+		}
+
+		if node.Right != nil {
+			node = node.Right
+			continue
+		}
+		node.Right = &new
+		break
+
 	}
 }
