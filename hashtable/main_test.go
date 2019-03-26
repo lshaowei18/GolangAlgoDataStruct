@@ -15,7 +15,8 @@ func TestHash(t *testing.T) {
 	}
 
 	for _, tt := range tests {
-		got := Hash(tt.key, tt.length)
+		ht := HashTable{}
+		got := ht.Hash(tt.key, tt.length)
 
 		if got != tt.want {
 			t.Errorf("Got %v, want %v", got, tt.want)
