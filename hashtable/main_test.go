@@ -1,6 +1,9 @@
 package hashtable
 
-import "testing"
+import (
+	"reflect"
+	"testing"
+)
 
 func TestHash(t *testing.T) {
 	tests := []struct {
@@ -19,6 +22,30 @@ func TestHash(t *testing.T) {
 
 		if got != tt.want {
 			t.Errorf("Got %v, want %v", got, tt.want)
+		}
+	}
+}
+
+func TestSet(t *testing.T) {
+	tests := []struct {
+		values []string
+	}{
+		{
+			[]string{"hello", "goodbye", "hi"},
+		},
+	}
+
+	for _, tt := range tests {
+		ht := HashTable{}
+		got := []string{}
+		for _, v := range tt.values {
+			k := ht.Hash(v)
+			ht.Set(k, v)
+			got = append(got, ht.keyMap[k][0])
+		}
+
+		if !reflect.DeepEqual(got, tt.values) {
+			t.Errorf("Got %v, want %v", got, tt.values)
 		}
 	}
 }
