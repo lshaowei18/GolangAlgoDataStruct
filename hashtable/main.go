@@ -1,7 +1,7 @@
 package hashtable
 
 type HashTable struct {
-	keyMap [53]int
+	keyMap [53][]int
 }
 
 func (ht HashTable) Hash(key string) int {
