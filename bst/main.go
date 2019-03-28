@@ -39,5 +39,13 @@ func (bst *BinarySearchTree) Insert(val int) {
 		node.Right = &new
 		break
 
+		if val < node.Val && node.Left != nil {
+			node = node.Left
+			continue
+		} else if val > node.Val && node.Right != nil {
+			node = node.Right
+			continue
+		}
+
 	}
 }
