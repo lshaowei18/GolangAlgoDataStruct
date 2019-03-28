@@ -22,4 +22,12 @@ func TestInsert(t *testing.T) {
 	if got != want {
 		t.Errorf("Got %v, want %v", got, want)
 	}
+
+	want = values[2]
+	bst.Insert(want)
+	got = bst.root.Right.Val
+
+	if got != want {
+		t.Errorf("Got %v, want %v", got, want)
+	}
 }
