@@ -26,3 +26,18 @@ func TestAddVertex(t *testing.T) {
 		}
 	})
 }
+
+func TestAddEdge(t *testing.T) {
+	g := makeGraph()
+	vertex1 := "Tokyo"
+	vertex2 := "China"
+	g.addVertex(vertex1)
+	g.addVertex(vertex2)
+	g.addEdge(vertex1, vertex2)
+
+	actual := g.AdjacencyList[vertex1][0]
+	if actual != vertex2 {
+		t.Errorf("Vertex %s should have %s as first edge, but got %s instead",
+			vertex1, vertex2, g)
+	}
+}
