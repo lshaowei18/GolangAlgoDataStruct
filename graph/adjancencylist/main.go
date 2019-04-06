@@ -16,3 +16,8 @@ func (g *Graph) addVertex(name string) {
 	}
 	g.AdjacencyList[name] = []string{}
 }
+
+func (g *Graph) addEdge(v1 string, v2 string) {
+	g.AdjacencyList[v1] = append(g.AdjacencyList[v1], v2)
+	g.AdjacencyList[v2] = append(g.AdjacencyList[v2], v1)
+}
