@@ -11,5 +11,8 @@ func makeGraph() Graph {
 }
 
 func (g *Graph) addVertex(name string) {
+	if _, ok := g.AdjacencyList[name]; ok {
+		return
+	}
 	g.AdjacencyList[name] = []string{}
 }
