@@ -5,7 +5,7 @@ import (
 )
 
 func TestAddVertex(t *testing.T) {
-	g := Graph{}
+	g := makeGraph()
 	want := "Tokyo"
 	g.addVertex(want)
 
