@@ -36,8 +36,15 @@ func TestAddEdge(t *testing.T) {
 	g.addEdge(vertex1, vertex2)
 
 	actual := g.AdjacencyList[vertex1][0]
+	want := vertex2
 	if actual != vertex2 {
 		t.Errorf("Vertex %s should have %s as first edge, but got %s instead",
-			vertex1, vertex2, g)
+			vertex1, want, actual)
+	}
+
+	actual = g.AdjacencyList[vertex2][0]
+	if actual != vertex1 {
+		t.Errorf("Vertex %s should have %s as first edge, but got %s instead",
+			vertex2, want, actual)
 	}
 }
