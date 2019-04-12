@@ -25,7 +25,7 @@ func (g *Graph) addEdge(v1 string, v2 string) error {
 	}
 	if _, ok := g.AdjacencyList[v2]; !ok {
 		return fmt.Errorf("%s is not a vertex.", v2)
-	}
+
 
 	g.AdjacencyList[v1] = append(g.AdjacencyList[v1], v2)
 	g.AdjacencyList[v2] = append(g.AdjacencyList[v2], v1)

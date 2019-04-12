@@ -59,3 +59,24 @@ func TestAddEdge(t *testing.T) {
 		}
 	})
 }
+
+func TestRemoveEdge(t *testing.T) {
+	t.Run("Both vertices and edges are added", func(t *testing.T) {
+		g := makeGraph()
+		v1 := "China"
+		v2 := "Korea"
+		g.addVertex(v1)
+		g.addVertex(v2)
+		g.addEdge(v1, v2)
+
+		g.removeEdge(v1, v2)
+
+		if len(g.AdjacencyList[v1]) != 0 {
+			t.Errorf("Length of %v should be 0 after removeEdge.", v1)
+		}
+		if len(g.AdjacencyList[v2]) != 0 {
+			t.Errorf("Length of %v should be 0 after removeEdge.", v2)
+		}
+
+	})
+}
