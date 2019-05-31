@@ -33,6 +33,7 @@ func (g *Graph) addEdge(v1 string, v2 string) error {
 }
 
 func (g *Graph) removeEdge(v1 string, v2 string) {
+	// Loop through the vertex's list of edges
 	for i, vertex := range g.AdjacencyList[v1] {
 		if vertex == v2 {
 			//remove vertex from the slice
@@ -40,6 +41,7 @@ func (g *Graph) removeEdge(v1 string, v2 string) {
 		}
 	}
 
+	//Loop through the vertex's list of edges
 	for i, vertex := range g.AdjacencyList[v2] {
 		if vertex == v1 {
 			//remove vertex from the slice
