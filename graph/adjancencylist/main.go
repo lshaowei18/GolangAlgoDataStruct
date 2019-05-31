@@ -31,3 +31,19 @@ func (g *Graph) addEdge(v1 string, v2 string) error {
 	g.AdjacencyList[v2] = append(g.AdjacencyList[v2], v1)
 	return nil
 }
+
+func (g *Graph) removeEdge(v1 string, v2 string) {
+	for i, vertex := range g.AdjacencyList[v1] {
+		if vertex == v2 {
+			//remove vertex from the slice
+			g.AdjacencyList[v1] = append(g.AdjacencyList[v1][:i], g.AdjacencyList[v1][i+1:]...)
+		}
+	}
+
+	for i, vertex := range g.AdjacencyList[v2] {
+		if vertex == v1 {
+			//remove vertex from the slice
+			g.AdjacencyList[v2] = append(g.AdjacencyList[v2][:i], g.AdjacencyList[v2][i+1:]...)
+		}
+	}
+}
