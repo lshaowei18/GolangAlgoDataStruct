@@ -49,3 +49,12 @@ func (g *Graph) removeEdge(v1 string, v2 string) {
 		}
 	}
 }
+
+func (g *Graph) removeVertex(v string) {
+	//Delete the vertex
+	delete(g.AdjacencyList, v)
+	//Loop through all the vertexes to remove the vertex from the edges
+	for v2, _ := range g.AdjacencyList {
+		g.removeEdge(v, v2)
+	}
+}
