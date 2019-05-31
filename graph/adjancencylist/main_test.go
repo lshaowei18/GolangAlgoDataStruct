@@ -80,3 +80,28 @@ func TestRemoveEdge(t *testing.T) {
 
 	})
 }
+
+func TestRemoveVertex(t *testing.T) {
+	t.Run("Remove vertice", func(t *testing.T) {
+		//Make a graph
+		g := makeGraph()
+		v1 := "China"
+		v2 := "Korea"
+		g.addVertex(v1)
+		g.addVertex(v2)
+		g.addEdge(v1, v2)
+
+		//Remove vertex
+		g.removeVertex(v1)
+
+		//Check if v1 is removed
+		if _, ok := g.AdjacencyList[v1]; ok {
+			t.Errorf("%v should not be in the list.", v1)
+		}
+
+		//Check if v1 is inside v2's list of edges
+		if len(g.AdjacencyList[v2]) != 0 {
+			t.Errorf("%v's list of edges should not contain %v.", v2, v1)
+		}
+	})
+}
