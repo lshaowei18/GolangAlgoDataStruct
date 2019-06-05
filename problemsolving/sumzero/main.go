@@ -26,3 +26,24 @@ func sumZero(nums []int) []int {
 
 	return ans
 }
+
+func multiplePointer(nums []int) []int {
+	ans := []int{}
+
+	left := 0
+	right := len(nums) - 1
+
+	for left < right {
+		sum := nums[left] + nums[right]
+
+		if sum == 0 {
+			ans = append(ans, nums[left], nums[right])
+			return ans
+		}
+
+		left++
+		right--
+	}
+
+	return ans
+}

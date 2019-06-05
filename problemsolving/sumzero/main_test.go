@@ -29,5 +29,13 @@ func TestSumZero(t *testing.T) {
 					tt.nums, actual, tt.expected)
 			}
 		})
+
+		t.Run("Multiple Pointer Solution", func(t *testing.T) {
+			actual := multiplePointer(tt.nums)
+			if !reflect.DeepEqual(actual, tt.expected) {
+				t.Errorf("nums: %v, actual : %v, expected : %v",
+					tt.nums, actual, tt.expected)
+			}
+		})
 	}
 }
