@@ -36,6 +36,13 @@ func TestAnagram(t *testing.T) {
 					tt.s1, tt.s2, actual, tt.expected)
 			}
 		})
+		t.Run("Second Attempt", func(t *testing.T) {
+			actual := alternative(tt.s1, tt.s2)
 
+			if actual != tt.expected {
+				t.Errorf("s1: %v, s2: %v, actual: %v, expected: %v",
+					tt.s1, tt.s2, actual, tt.expected)
+			}
+		})
 	}
 }
