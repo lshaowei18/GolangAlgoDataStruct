@@ -22,9 +22,18 @@ func TestCountUniqueValues(t *testing.T) {
 	}
 
 	for _, tt := range tests {
-		actual := countUniqueValues(tt.nums)
-		if actual != tt.expected {
-			t.Errorf("%v, actual: %v, expected: %v", tt.nums, actual, tt.expected)
-		}
+		t.Run("First attempt", func(t *testing.T) {
+			actual := countUniqueValues(tt.nums)
+			if actual != tt.expected {
+				t.Errorf("%v, actual: %v, expected: %v", tt.nums, actual, tt.expected)
+			}
+		})
+
+		t.Run("Second try, no maps", func(t *testing.T) {
+			actual := noMaps(tt.nums)
+			if actual != tt.expected {
+				t.Errorf("%v, actual: %v, expected: %v", tt.nums, actual, tt.expected)
+			}
+		})
 	}
 }

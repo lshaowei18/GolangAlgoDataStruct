@@ -27,3 +27,24 @@ func countUniqueValues(nums []int) int {
 
 	return len(unique)
 }
+
+//This only works if the slice is sorted
+func noMaps(nums []int) int {
+	if len(nums) == 0 {
+		return 0
+	}
+
+	index := 0
+
+	for i := 1; i < len(nums); i++ {
+		//if the values are the same, move on to the next
+		if nums[index] == nums[i] {
+			continue
+		}
+		//increase index and assign the value of nums[i] to it
+		index++
+		nums[index] = nums[i]
+	}
+
+	return index + 1
+}
